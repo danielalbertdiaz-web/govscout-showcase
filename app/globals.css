@@ -1,0 +1,533 @@
+@import "tailwindcss";
+
+/* GovScout brand tokens — sourced from govscout.ai (dark navy + gold + blue). */
+:root {
+  --gs-navy-900: #0a0e1a;
+  --gs-navy-800: #0f1629;
+  --gs-navy-700: #141b2e;
+  --gs-navy-600: #1a2140;
+  --gs-navy-500: #1e2748;
+
+  --gs-gold: #d4a853;
+  --gs-gold-light: #e8c97a;
+  --gs-gold-dark: #b8913e;
+  --gs-gold-soft: rgba(212, 168, 83, 0.12);
+
+  --gs-blue: #3b82f6;
+  --gs-blue-light: #60a5fa;
+  --gs-blue-dark: #2563eb;
+
+  --gs-bg: #f7f6f1;
+  --gs-surface: #ffffff;
+  --gs-surface-muted: #efece4;
+  --gs-border: #e3ddca;
+  --gs-border-strong: #cdc5ac;
+  --gs-text: #0a0e1a;
+  --gs-text-muted: #4b5167;
+  --gs-text-subtle: #76798c;
+  --gs-accent: var(--gs-gold-dark);
+  --gs-accent-strong: #8a6a2a;
+  --gs-accent-soft: rgba(212, 168, 83, 0.16);
+
+  /* Layered elevation system. Flat `shadow-sm` everywhere reads as a wireframe;
+     a small ramp of soft, tinted shadows gives real depth hierarchy. The tint
+     is a cool navy rather than pure black so shadows sit in the brand family. */
+  --gs-shadow-xs: 0 1px 2px rgba(10, 14, 26, 0.04);
+  --gs-shadow-sm: 0 1px 2px rgba(10, 14, 26, 0.05), 0 1px 3px rgba(10, 14, 26, 0.04);
+  --gs-shadow-md: 0 2px 4px rgba(10, 14, 26, 0.04), 0 6px 16px -4px rgba(10, 14, 26, 0.08);
+  --gs-shadow-lg: 0 4px 8px rgba(10, 14, 26, 0.05), 0 16px 32px -8px rgba(10, 14, 26, 0.12);
+  --gs-ring-gold: 0 0 0 3px rgba(212, 168, 83, 0.22);
+
+  --gs-radius: 0.75rem;
+  --gs-radius-lg: 1rem;
+  --gs-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Remap Tailwind's emerald palette → GovScout gold so existing
+   `emerald-*` utilities pick up the brand without touching JSX. */
+@theme inline {
+  --color-background: var(--gs-bg);
+  --color-foreground: var(--gs-text);
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-emerald-50: #fbf6e7;
+  --color-emerald-100: #f5ebc8;
+  --color-emerald-200: #ecd99a;
+  --color-emerald-300: #e1c473;
+  --color-emerald-400: #d9b65e;
+  --color-emerald-500: #d4a853;
+  --color-emerald-600: #b8913e;
+  --color-emerald-700: #8a6a2a;
+  --color-emerald-800: #5d4719;
+  --color-emerald-900: #3a2c10;
+  --color-emerald-950: #221908;
+
+  /* P12 interior-depth pass: the pages are written in raw `stone-*` utilities,
+     which render cool grey and make every card read as a clinical white box.
+     Warm the light end of stone toward the brand's parchment family (borders,
+     chips, table headers all inherit instantly); keep the dark text shades
+     near-neutral so copy stays crisp. */
+  --color-stone-50: #faf8f2;
+  --color-stone-100: #f3f0e6;
+  --color-stone-200: #e7e1d0;
+  --color-stone-300: #d6cdb4;
+  --color-stone-400: #a8a293;
+  --color-stone-500: #767163;
+  --color-stone-600: #57534a;
+  --color-stone-700: #443f37;
+  --color-stone-800: #292524;
+  --color-stone-900: #14110e;
+}
+
+html,
+body {
+  background: var(--gs-bg);
+  color: var(--gs-text);
+}
+
+body {
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input,
+textarea,
+select {
+  color: var(--gs-text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--gs-text-subtle);
+  opacity: 1;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--gs-gold);
+  outline-offset: 1px;
+}
+
+.gs-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.gs-scroll::-webkit-scrollbar-thumb {
+  background: var(--gs-border-strong);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.gs-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Branded chrome — used by the workbench + login headers. */
+.gs-chrome {
+  background:
+    radial-gradient(120% 140% at 85% -40%, rgba(212, 168, 83, 0.12), transparent 60%),
+    linear-gradient(180deg, var(--gs-navy-900) 0%, var(--gs-navy-800) 100%);
+  color: #e8ecf4;
+  border-bottom: 1px solid rgba(212, 168, 83, 0.18);
+  box-shadow: 0 1px 0 rgba(212, 168, 83, 0.06), var(--gs-shadow-md);
+}
+
+.gs-chrome .gs-chrome-tagline {
+  color: var(--gs-gold-light);
+}
+
+.gs-chrome a,
+.gs-chrome button {
+  color: #e8ecf4;
+}
+
+.gs-chrome .gs-chip {
+  border-color: rgba(212, 168, 83, 0.28);
+  background: rgba(212, 168, 83, 0.08);
+  color: var(--gs-gold-light);
+  transition: background-color 0.15s var(--gs-ease), border-color 0.15s var(--gs-ease), color 0.15s var(--gs-ease);
+}
+
+.gs-chrome .gs-chip-muted {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  color: #c2c8d6;
+}
+
+.gs-chrome .gs-chip-muted:hover {
+  border-color: rgba(212, 168, 83, 0.32);
+  background: rgba(212, 168, 83, 0.1);
+  color: var(--gs-gold-light);
+}
+
+.gs-chrome .gs-chip-cta {
+  background: linear-gradient(135deg, var(--gs-gold), var(--gs-gold-light));
+  border-color: transparent;
+  color: var(--gs-navy-900);
+  font-weight: 600;
+}
+
+.gs-chrome .gs-chip-cta:hover {
+  filter: brightness(1.05);
+}
+
+.gs-wordmark {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: 1.05rem;
+  color: #e8ecf4;
+}
+.gs-wordmark .gs-wordmark-accent {
+  color: var(--gs-gold);
+}
+
+.gs-logo-mark {
+  width: 28px;
+  height: 28px;
+  color: var(--gs-blue);
+  flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Sidebar navigation (IA pass): grouped, collapsible left rail. Replaces the
+   flat 14-item top nav. Widths are driven inline by AppChrome.
+   --------------------------------------------------------------------------- */
+.gs-sidebar {
+  background:
+    radial-gradient(120% 50% at 50% -8%, rgba(212, 168, 83, 0.1), transparent 60%),
+    linear-gradient(180deg, var(--gs-navy-900) 0%, var(--gs-navy-800) 100%);
+  color: #e8ecf4;
+  border-right: 1px solid rgba(212, 168, 83, 0.18);
+  box-shadow: var(--gs-shadow-md);
+  transition: width 0.2s var(--gs-ease);
+}
+
+.gs-shell-main {
+  transition: padding-left 0.2s var(--gs-ease);
+}
+
+.gs-nav-group-label {
+  color: rgba(232, 201, 122, 0.62);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.gs-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.6rem;
+  padding: 0.5rem 0.625rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #c2c8d6;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: background-color 0.15s var(--gs-ease), color 0.15s var(--gs-ease),
+    border-color 0.15s var(--gs-ease);
+}
+.gs-nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #e8ecf4;
+}
+.gs-nav-item-active {
+  background: linear-gradient(135deg, rgba(212, 168, 83, 0.24), rgba(232, 201, 122, 0.1));
+  border-color: rgba(212, 168, 83, 0.45);
+  color: var(--gs-gold-light);
+  font-weight: 600;
+}
+.gs-nav-item svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.gs-nav-badge {
+  flex-shrink: 0;
+  min-width: 1.25rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--gs-gold), var(--gs-gold-light));
+  padding: 0.05rem 0.35rem;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gs-navy-900);
+}
+.gs-nav-dot {
+  position: absolute;
+  top: 0.35rem;
+  right: 0.55rem;
+  height: 6px;
+  width: 6px;
+  border-radius: 999px;
+  background: var(--gs-gold);
+}
+.gs-nav-item {
+  position: relative;
+}
+
+/* ---------------------------------------------------------------------------
+   Shared component primitives (Sprint 12 UX pass).
+   These are opt-in utility classes — existing Tailwind-styled pages keep
+   working unchanged; surfaces adopt these for a more cohesive, elevated feel.
+   --------------------------------------------------------------------------- */
+
+/* App canvas: warm paper base with two faint brand-tinted light sources so
+   large empty pages don't read as flat grey. Fixed so it doesn't scroll. */
+.gs-canvas {
+  position: relative;
+  background-color: var(--gs-bg);
+}
+.gs-canvas::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 500px at 12% -8%, rgba(59, 130, 246, 0.06), transparent 60%),
+    radial-gradient(820px 480px at 100% 0%, rgba(212, 168, 83, 0.08), transparent 55%);
+}
+.gs-canvas > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Cards: the workhorse surface. Soft layered shadow + hairline border. */
+.gs-card {
+  background: var(--gs-surface);
+  border: 1px solid var(--gs-border);
+  border-radius: var(--gs-radius);
+  box-shadow: var(--gs-shadow-sm);
+}
+.gs-card-lg {
+  border-radius: var(--gs-radius-lg);
+  box-shadow: var(--gs-shadow-md);
+}
+/* Interactive cards (links/rows) lift slightly toward the cursor. */
+.gs-card-interactive {
+  transition: box-shadow 0.18s var(--gs-ease), border-color 0.18s var(--gs-ease), transform 0.18s var(--gs-ease);
+}
+.gs-card-interactive:hover {
+  box-shadow: var(--gs-shadow-md);
+  border-color: var(--gs-border-strong);
+  transform: translateY(-1px);
+}
+
+/* Buttons. `.gs-btn` is the shape; modifiers set intent. */
+.gs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.625rem;
+  padding: 0.5rem 0.95rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: filter 0.15s var(--gs-ease), box-shadow 0.15s var(--gs-ease),
+    background-color 0.15s var(--gs-ease), border-color 0.15s var(--gs-ease), transform 0.06s var(--gs-ease);
+}
+.gs-btn:active {
+  transform: translateY(0.5px);
+}
+.gs-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* Primary CTA: brushed-gold gradient with a subtle top highlight. */
+.gs-btn-primary {
+  border: 1px solid var(--gs-gold-dark);
+  background: linear-gradient(180deg, var(--gs-gold-light) 0%, var(--gs-gold) 48%, var(--gs-gold-dark) 100%);
+  color: var(--gs-navy-900);
+  box-shadow: var(--gs-shadow-xs), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+.gs-btn-primary:not(:disabled):hover {
+  filter: brightness(1.04);
+  box-shadow: var(--gs-shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Navy CTA: for confirm/submit actions where gold is reserved for branding. */
+.gs-btn-navy {
+  border: 1px solid var(--gs-navy-700);
+  background: linear-gradient(180deg, var(--gs-navy-600), var(--gs-navy-800));
+  color: #eef1f7;
+  box-shadow: var(--gs-shadow-xs);
+}
+.gs-btn-navy:not(:disabled):hover {
+  filter: brightness(1.12);
+}
+
+/* Ghost: low-emphasis secondary action. */
+.gs-btn-ghost {
+  border: 1px solid var(--gs-border-strong);
+  background: var(--gs-surface);
+  color: var(--gs-text-muted);
+}
+.gs-btn-ghost:not(:disabled):hover {
+  background: var(--gs-surface-muted);
+  color: var(--gs-text);
+  border-color: var(--gs-border-strong);
+}
+
+/* Eyebrow label above section headers. */
+.gs-eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gs-accent-strong);
+}
+
+/* Pills / badges. */
+.gs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  border: 1px solid var(--gs-border-strong);
+  background: var(--gs-surface-muted);
+  color: var(--gs-text-muted);
+}
+.gs-badge-gold {
+  border-color: rgba(212, 168, 83, 0.4);
+  background: var(--gs-accent-soft);
+  color: var(--gs-accent-strong);
+}
+
+/* Animated entrance for newly-revealed panels. Respects reduced-motion. */
+@keyframes gs-rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.gs-rise {
+  animation: gs-rise 0.32s var(--gs-ease) both;
+}
+/* ── Feel pass (P10) ─────────────────────────────────────────────────────────
+   The motion primitives above only fire where gs- classes are used; most pages
+   are raw Tailwind. These element-level rules give the whole app its feel
+   without touching every page: content rises in on navigation, card surfaces
+   lift toward the cursor, buttons give press feedback, tables glow on hover. */
+
+/* Page content enters with a soft rise on every navigation. */
+.gs-shell-main > * {
+  animation: gs-rise 0.35s var(--gs-ease) both;
+}
+
+/* ── Interior depth (P12) ───────────────────────────────────────────────────
+   Atmosphere: the content canvas gets a faint navy glow falling from the top
+   plus a whisper of gold from the corner — the canvas stops being dead grey
+   and the navy/gold brand reads INSIDE the app, not just on its chrome. */
+.gs-shell-main {
+  position: relative;
+}
+.gs-shell-main::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(1100px 420px at 50% -180px, rgba(15, 22, 41, 0.07), transparent 70%),
+    radial-gradient(700px 480px at 108% -60px, rgba(212, 168, 83, 0.07), transparent 65%);
+}
+.gs-shell-main > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Cards stop being flat white boxes: a barely-there parchment gradient, a
+   warm border, and the layered navy-tinted shadow ramp. Element-level, so
+   every `rounded-xl border` surface in the app upgrades at once. */
+.gs-shell-main :is(article, li, a, section, div)[class*="rounded-xl"][class*="border"][class*="bg-white"] {
+  background: linear-gradient(180deg, #ffffff 0%, #fdfcf8 100%);
+  box-shadow: var(--gs-shadow-sm);
+}
+
+/* Section kickers (the uppercase tracked labels) carry the gold accent —
+   the single highest-leverage "brand inside" move. */
+.gs-shell-main :is(h2, h3, div, span)[class*="uppercase"][class*="tracking-wider"] {
+  color: var(--gs-accent-strong);
+}
+
+/* Any card-shaped surface (the app's rounded-xl + border idiom) transitions. */
+.gs-shell-main :is(article, li, a, section, div)[class*="rounded-xl"][class*="border"] {
+  transition:
+    box-shadow 0.18s var(--gs-ease),
+    border-color 0.18s var(--gs-ease),
+    transform 0.18s var(--gs-ease);
+}
+/* …and the clickable ones lift. */
+.gs-shell-main :is(a, article, li)[class*="rounded-xl"][class*="border"]:hover {
+  box-shadow: var(--gs-shadow-md);
+  border-color: var(--gs-border-strong);
+  transform: translateY(-1px);
+}
+
+/* Every button: smooth color/shadow + a tactile press. */
+.gs-shell-main button {
+  transition:
+    background-color 0.15s var(--gs-ease),
+    border-color 0.15s var(--gs-ease),
+    color 0.15s var(--gs-ease),
+    box-shadow 0.15s var(--gs-ease),
+    transform 0.07s var(--gs-ease),
+    opacity 0.15s var(--gs-ease);
+}
+.gs-shell-main button:active:not(:disabled) {
+  transform: translateY(1px) scale(0.99);
+}
+
+/* Table rows acknowledge the cursor. */
+.gs-shell-main tbody tr {
+  transition: background-color 0.12s var(--gs-ease);
+}
+.gs-shell-main tbody tr:hover {
+  background-color: var(--gs-surface-muted);
+}
+
+/* Active nav item gets a gold edge — you always know where you are. */
+.gs-nav-item-active {
+  position: relative;
+}
+.gs-nav-item-active::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 6px;
+  bottom: 6px;
+  width: 3px;
+  border-radius: 999px;
+  background: var(--gs-gold, #d4a853);
+}
+
+/* Inputs sharpen on focus beyond the ring. */
+.gs-shell-main :is(input, select, textarea) {
+  transition: border-color 0.15s var(--gs-ease), box-shadow 0.15s var(--gs-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gs-rise,
+  .gs-card-interactive,
+  .gs-btn,
+  .gs-shell-main > *,
+  .gs-shell-main button,
+  .gs-shell-main :is(article, li, a, section, div)[class*="rounded-xl"][class*="border"] {
+    animation: none !important;
+    transition: none !important;
+  }
+}

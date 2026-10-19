@@ -1,0 +1,54 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="table-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F3F4F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E5E7EB;stop-opacity:1" />
+    </linearGradient>
+    <filter id="subtle-shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="8" flood-opacity="0.1"/>
+    </filter>
+    <style>
+      .table { fill: url(#table-gradient); stroke: #D1D5DB; stroke-width: 3; filter: url(#subtle-shadow); }
+      .chair { fill: #F9FAFB; stroke: #9CA3AF; stroke-width: 2; filter: url(#subtle-shadow); }
+      .chair-back { fill: #E5E7EB; stroke: #9CA3AF; stroke-width: 1; }
+      .title { fill: #374151; font-family: system-ui, -apple-system, sans-serif; font-size: 24px; font-weight: 600; }
+      .subtitle { fill: #6B7280; font-family: system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: 400; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#FAFAFA"/>
+
+  <!-- Council Table -->
+  <circle cx="400" cy="280" r="130" class="table"/>
+  <circle cx="400" cy="280" r="90" fill="none" stroke="#D1D5DB" stroke-width="2" opacity="0.5"/>
+
+  <!-- Six Chair Positions Around Table -->
+  <!-- Top -->
+  <ellipse cx="400" cy="130" rx="30" ry="20" class="chair"/>
+  <rect x="385" y="105" width="30" height="25" rx="8" class="chair-back"/>
+
+  <!-- Top Right -->
+  <ellipse cx="520" cy="190" rx="30" ry="20" class="chair" transform="rotate(60 520 190)"/>
+  <rect x="505" y="165" width="30" height="25" rx="8" class="chair-back" transform="rotate(60 520 190)"/>
+
+  <!-- Bottom Right -->
+  <ellipse cx="520" cy="370" rx="30" ry="20" class="chair" transform="rotate(120 520 370)"/>
+  <rect x="505" y="395" width="30" height="25" rx="8" class="chair-back" transform="rotate(120 520 370)"/>
+
+  <!-- Bottom -->
+  <ellipse cx="400" cy="430" rx="30" ry="20" class="chair"/>
+  <rect x="385" y="455" width="30" height="25" rx="8" class="chair-back"/>
+
+  <!-- Bottom Left -->
+  <ellipse cx="280" cy="370" rx="30" ry="20" class="chair" transform="rotate(240 280 370)"/>
+  <rect x="265" y="395" width="30" height="25" rx="8" class="chair-back" transform="rotate(240 280 370)"/>
+
+  <!-- Top Left -->
+  <ellipse cx="280" cy="190" rx="30" ry="20" class="chair" transform="rotate(300 280 190)"/>
+  <rect x="265" y="165" width="30" height="25" rx="8" class="chair-back" transform="rotate(300 280 190)"/>
+
+  <!-- Empty State Text -->
+  <text x="400" y="520" text-anchor="middle" class="title">No council deliberation yet</text>
+  <text x="400" y="545" text-anchor="middle" class="subtitle">Send a grant draft to begin the 6-agent review process</text>
+</svg>

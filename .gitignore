@@ -1,0 +1,65 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# govscout sqlite (per-user drafts; not for source control)
+/data/govscout.db
+/data/govscout.db-shm
+/data/govscout.db-wal
+
+# 4.2 generated partner-intro drafts (working drafts; never auto-sent)
+/outreach/
+data/track-l-archives/
+/data/govscout.db.backup-*
+logs/track-l-*.log
+
+# build/runtime logs (noise; not source)
+logs/*.log
+# pre-migration sqlite snapshots (local safety copies, not source control)
+/data/govscout.db.pre-*
+# per-deploy build provenance, written by scripts/deploy.sh
+/build-meta.json
+# per-run deploy records written by scripts/deploy.sh (local evidence, like backups)
+/audit/deploys/
+# per-run merge conflict reports (local adjudication artifacts)
+/audit/bidboard-merge/
+# per-run opportunity-link conflict reports (local adjudication artifacts)
+/audit/opportunity-conflicts/

@@ -1,0 +1,106 @@
+{
+  "council": {
+    "agents": [
+      {
+        "id": "refiner",
+        "name": "Refiner",
+        "role": "Prompt analysis and context refinement",
+        "order": 1,
+        "icon": "/assets/council/refiner.svg",
+        "color": {
+          "primary": "#3B82F6",
+          "secondary": "#1E40AF"
+        }
+      },
+      {
+        "id": "domain-expert",
+        "name": "Domain Expert",
+        "role": "Subject matter expertise and accuracy review",
+        "order": 2,
+        "icon": "/assets/council/domain-expert.svg",
+        "color": {
+          "primary": "#1E3A8A",
+          "secondary": "#1E293B"
+        }
+      },
+      {
+        "id": "contrarian",
+        "name": "Contrarian",
+        "role": "Challenge assumptions and stress-test arguments",
+        "order": 3,
+        "icon": "/assets/council/contrarian.svg",
+        "color": {
+          "primary": "#DC2626",
+          "secondary": "#991B1B"
+        }
+      },
+      {
+        "id": "budget-reviewer",
+        "name": "Budget Reviewer",
+        "role": "Financial analysis and cost validation",
+        "order": 4,
+        "icon": "/assets/council/budget-reviewer.svg",
+        "color": {
+          "primary": "#059669",
+          "secondary": "#047857"
+        }
+      },
+      {
+        "id": "executor",
+        "name": "Executor",
+        "role": "Reconcile inputs into actionable revision plan",
+        "order": 5,
+        "icon": "/assets/council/executor.svg",
+        "color": {
+          "primary": "#F59E0B",
+          "secondary": "#D97706"
+        }
+      },
+      {
+        "id": "synthesizer",
+        "name": "Synthesizer",
+        "role": "Apply revision plan and generate final draft",
+        "order": 6,
+        "icon": "/assets/council/synthesizer.svg",
+        "color": {
+          "primary": "#EAB308",
+          "secondary": "#CA8A04"
+        }
+      }
+    ]
+  },
+  "emptyStates": {
+    "council": {
+      "icon": "/assets/empty-states/council-empty.svg",
+      "title": "No council deliberation yet",
+      "subtitle": "Send a grant draft to begin the 6-agent review process"
+    },
+    "drafts": {
+      "icon": "/assets/empty-states/drafts-empty.svg",
+      "title": "No drafts yet",
+      "subtitle": "Import a grant opportunity to start drafting proposals"
+    }
+  },
+  "status": {
+    "scan-healthy": { "icon": "/assets/status/scan-healthy.svg", "color": "#059669" },
+    "scan-failure": { "icon": "/assets/status/scan-failure.svg", "color": "#DC2626" },
+    "draft-scored-low": { "icon": "/assets/status/draft-scored-low.svg", "color": "#F59E0B" },
+    "draft-scored-high": { "icon": "/assets/status/draft-scored-high.svg", "color": "#059669" },
+    "draft-ready": { "icon": "/assets/status/draft-ready.svg", "color": "#3B82F6" },
+    "council-running": { "icon": "/assets/status/council-running.svg", "color": "#8B5CF6" },
+    "council-done": { "icon": "/assets/status/council-done.svg", "color": "#059669" },
+    "submission-locked": { "icon": "/assets/status/submission-locked.svg", "color": "#EF4444" },
+    "submission-unlocked": { "icon": "/assets/status/submission-unlocked.svg", "color": "#10B981" },
+    "partner-active": { "icon": "/assets/status/partner-active.svg", "color": "#3B82F6" },
+    "partner-archived": { "icon": "/assets/status/partner-archived.svg", "color": "#6B7280" },
+    "expired": { "icon": "/assets/status/expired.svg", "color": "#F59E0B" },
+    "new-posting": { "icon": "/assets/status/new-posting.svg", "color": "#10B981" },
+    "manual-override": { "icon": "/assets/status/manual-override.svg", "color": "#8B5CF6" },
+    "error-critical": { "icon": "/assets/status/error-critical.svg", "color": "#DC2626" },
+    "info": { "icon": "/assets/status/info.svg", "color": "#3B82F6" }
+  },
+  "generated": "2026-06-04T19:59:00Z",
+  "version": "1.0.0",
+  "sprint": "Sprint 11 Track B",
+  "style": "nano-banana-pro"
+}

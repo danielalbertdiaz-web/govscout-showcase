@@ -1,0 +1,27 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient-refiner" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E40AF;stop-opacity:1" />
+    </linearGradient>
+    <filter id="drop-shadow">
+      <feDropShadow dx="2" dy="4" stdDeviation="4" flood-opacity="0.15"/>
+    </filter>
+    <style>
+      .bg-circle { fill: #3B82F615; stroke: #3B82F630; stroke-width: 2; }
+      .symbol { filter: url(#drop-shadow); }
+    </style>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="240" class="bg-circle"/>
+
+  <!-- Agent Symbol -->
+  
+            <g class="symbol">
+                <circle cx="256" cy="256" r="80" fill="none" stroke="url(#gradient-refiner)" stroke-width="12" opacity="0.7"/>
+                <circle cx="256" cy="256" r="50" fill="none" stroke="url(#gradient-refiner)" stroke-width="8" opacity="0.9"/>
+                <circle cx="256" cy="256" r="25" fill="url(#gradient-refiner)" opacity="0.8"/>
+                <path d="M216,216 L296,296 M296,216 L216,296" stroke="#3B82F6" stroke-width="6" opacity="0.6"/>
+            </g>
+</svg>

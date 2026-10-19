@@ -1,0 +1,59 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="paper-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F9FAFB;stop-opacity:1" />
+    </linearGradient>
+    <filter id="paper-shadow">
+      <feDropShadow dx="2" dy="4" stdDeviation="6" flood-opacity="0.15"/>
+    </filter>
+    <style>
+      .paper { fill: url(#paper-gradient); stroke: #E5E7EB; stroke-width: 2; filter: url(#paper-shadow); }
+      .quill-feather { fill: #92400E; }
+      .quill-tip { fill: #451A03; }
+      .ink { stroke: #1F2937; stroke-width: 2; opacity: 0.6; }
+      .title { fill: #374151; font-family: system-ui, -apple-system, sans-serif; font-size: 24px; font-weight: 600; }
+      .subtitle { fill: #6B7280; font-family: system-ui, -apple-system, sans-serif; font-size: 16px; font-weight: 400; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="#FAFAFA"/>
+
+  <!-- Background Papers (layered) -->
+  <rect x="280" y="200" width="260" height="200" rx="12" class="paper" transform="rotate(-8 410 300)" opacity="0.7"/>
+  <rect x="290" y="210" width="260" height="200" rx="12" class="paper" transform="rotate(4 420 310)" opacity="0.8"/>
+
+  <!-- Main Paper -->
+  <rect x="300" y="220" width="260" height="200" rx="12" class="paper"/>
+
+  <!-- Paper Content Lines -->
+  <line x1="320" y1="250" x2="530" y2="250" class="ink"/>
+  <line x1="320" y1="270" x2="540" y2="270" class="ink"/>
+  <line x1="320" y1="290" x2="520" y2="290" class="ink"/>
+  <line x1="320" y1="310" x2="480" y2="310" class="ink"/>
+  <line x1="320" y1="330" x2="510" y2="330" class="ink"/>
+
+  <!-- Paper margin -->
+  <line x1="340" y1="240" x2="340" y2="400" stroke="#FCA5A5" stroke-width="1" opacity="0.5"/>
+
+  <!-- Quill Pen -->
+  <g transform="translate(350, 180) rotate(25)">
+    <!-- Feather -->
+    <ellipse cx="0" cy="0" rx="8" ry="40" class="quill-feather"/>
+    <path d="M-6,-30 Q0,-35 6,-30 Q0,-32 -6,-30" fill="#A16207"/>
+    <path d="M-6,0 Q0,5 6,0 Q0,2 -6,0" fill="#A16207"/>
+
+    <!-- Quill tip -->
+    <path d="M-2,35 L0,45 L2,35 Z" class="quill-tip"/>
+  </g>
+
+  <!-- Ink well -->
+  <circle cx="580" cy="350" r="25" fill="#1F2937" opacity="0.8"/>
+  <circle cx="580" cy="350" r="20" fill="#374151"/>
+  <circle cx="580" cy="345" r="15" fill="#1F2937"/>
+
+  <!-- Empty State Text -->
+  <text x="400" y="500" text-anchor="middle" class="title">No drafts yet</text>
+  <text x="400" y="525" text-anchor="middle" class="subtitle">Import a grant opportunity to start drafting proposals</text>
+</svg>
